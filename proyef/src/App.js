@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Entre MAS Mejor</h1>
+        <h1>Entre MÁS Mejor</h1>
         {isAuthenticated ? (
           <div className="content">
             <Categories onCategorySelect={handleCategorySelect} />
