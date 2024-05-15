@@ -1,0 +1,48 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Creepster', cursive;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: #1e1e1e;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+input {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #333;
+    color: #fff;
+}
+
+button {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #d32f2f;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #b71c1c;
+}
+
+h1 {
+    font-size: 3rem;
+    color: #d32f2f;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
