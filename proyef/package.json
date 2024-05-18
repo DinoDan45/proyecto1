@@ -1,6 +1,7 @@
 {
-  "name": "proyef",
+  "name": "trafico",
   "version": "0.1.0",
+  "description": "Frontend para la aplicación de ventas",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",

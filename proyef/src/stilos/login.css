@@ -43,6 +43,17 @@ button:hover {
     background-color: #2e7d32;
 }
 
+a {
+    color: #388e3c;
+    text-decoration: none;
+    font-size: 1rem;
+    margin-top: 0.5rem; 
+}
+
+a:hover {
+    text-decoration: underline; 
+}
+
 h1 {
     font-size: 3rem;
     color: #388e3c;
@@ -54,6 +65,7 @@ label {
     align-items: flex-start;
     font-size: 1.2rem;
 }
+
 
 
 @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');

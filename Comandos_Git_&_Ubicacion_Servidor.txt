@@ -1,0 +1,8 @@
+Cambio a la rama segundaria
+
+git checkout Segundaria
+
+
+ruta SQL Server
+
+C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA

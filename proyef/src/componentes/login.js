@@ -2,49 +2,49 @@ import React, { useState } from 'react';
 import '../stilos/login.css';
 
 function Login({ onLoginSuccess }) {
-const [username, setUsername] = useState('');
-const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
-const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch('http://localhost:5040/api/auth/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, password })
+    const response = await fetch('http://localhost:3000/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
     });
     const data = await response.json();
     if (data.success) {
-    onLoginSuccess();
+        onLoginSuccess();
     } else {
-    alert('Credenciales incorrectas');
+        alert('Credenciales incorrectas');
     }
-};
+    };
 
-return (
+    return (
     <div className="login-container">
-    <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
         <label>
-        Usuario:
-        <input 
+            Usuario:
+            <input 
             type="text" 
             value={username}
             onChange={(e) => setUsername(e.target.value)} 
             required 
-        />
+            />
         </label>
         <label>
-        Contraseña:
-        <input 
+            Contraseña:
+            <input 
             type="password" 
             value={password}
             onChange={(e) => setPassword(e.target.value)} 
             required 
-        />
+            />
         </label>
         <button type="submit">Iniciar Sesión</button>
-    </form>
+        </form>
     </div>
-);
+    );
 }
 
 export default Login;

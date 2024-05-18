@@ -1,16 +1,25 @@
-import mysql from 'mysql2/promise';
+import sql from 'mssql';
 import config from '../config.js';
 
-const connection = mysql.createConnection({
-  host: config.dbHost,
+const dbConfig = {
   user: config.dbUser,
   password: config.dbPassword,
-  database: config.dbTrafico,
-  port: config.dbPort,
-});
+  server: config.dbHost,
+  database: config.dbName,
+  port: parseInt(config.dbPort, 10),
+  options: {
+    trustServerCertificate: true, // Cambiar a true si está desarrollando localmente
+  },
+};
 
-const createConnection = () => {
-  return connection;
+const createConnection = async () => {
+  try {
+    await sql.connect(dbConfig);
+    console.log('Connected to SQL Server');
+    return sql;
+  } catch (err) {
+    console.error('Database connection failed: ', err);
+  }
 };
 
 export { createConnection };

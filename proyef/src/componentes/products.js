@@ -5,7 +5,7 @@ const [products, setProducts] = useState([]);
 
 useEffect(() => {
     if (categoryId) {
-    fetch(`http://localhost:5040/api/productos/${categoryId}`)
+    fetch(`http://localhost:3000/api/productos/${categoryId}`)
         .then(response => response.json())
         .then(data => setProducts(data));
     }

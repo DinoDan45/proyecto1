@@ -4,7 +4,7 @@ function Categories({ onCategorySelect }) {
 const [categories, setCategories] = useState([]);
 
 useEffect(() => {
-    fetch('http://localhost:5040/api/categorias')
+    fetch('http://localhost:3000/api/categorias')
     .then(response => response.json())
     .then(data => setCategories(data));
 }, []);

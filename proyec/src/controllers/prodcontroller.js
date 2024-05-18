@@ -1,12 +1,18 @@
 import { createConnection } from '../DB/database.js';
 
-const getProductsByCategory = async (req, res) => {
-const { categoryId } = req.params;
-const connection = await createConnection();
-  const [rows] = await connection.query('SELECT * FROM productos WHERE categoria_id = ?', [categoryId]);
-res.json(rows);
+const getProductosByCategoria = async (req, res) => {
+  const { categoriaId } = req.params;
+  try {
+    const connection = await createConnection();
+    const result = await connection.query`SELECT * FROM dbo.Productos WHERE id_categoria = ${id_categoria}`;
+    res.json(result.recordset);
+  } catch (err) {
+    console.error('Error querying the database: ', err);
+    res.status(500).send('Server error');
+  }
 };
 
-export const productController = {
-getProductsByCategory,
+export const controladores = {
+  getProductosByCategoria,
 };
+

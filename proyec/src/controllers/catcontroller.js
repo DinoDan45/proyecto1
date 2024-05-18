@@ -1,11 +1,16 @@
 import { createConnection } from '../DB/database.js';
 
-const getCategories = async (req, res) => {
-  const connection = await createConnection();
-  const [rows] = await connection.query('SELECT * FROM categorias');
-  res.json(rows);
+const getCategorias = async (req, res) => {
+  try {
+    const connection = await createConnection();
+    const result = await connection.query('SELECT * FROM dbo.Categorías');
+    res.json(result.recordset);
+  } catch (err) {
+    console.error('Error querying the database: ', err);
+    res.status(500).send('Server error');
+  }
 };
 
-export const categoryController = {
-  getCategories,
+export const controladores = {
+  getCategorias,
 };
