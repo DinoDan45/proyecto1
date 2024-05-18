@@ -4,7 +4,6 @@ import authRouter from './routes/routes.js';
 import authroutes from './routes/authroutes.js';
 import router from './routes/authroutes.js';
 
-//instancia de express
 const app = express();
 
 //PORT
