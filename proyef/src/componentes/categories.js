@@ -14,8 +14,8 @@ return (
     <h2>Categorías</h2>
     <ul>
         {categories.map(category => (
-        <li key={category.id} onClick={() => onCategorySelect(category.id)}>
-            {category.name}
+        <li key={category.id_categoria} onClick={() => onCategorySelect(category.id_categoria)}>
+            {category.nombre_categoria}
         </li>
         ))}
     </ul>
