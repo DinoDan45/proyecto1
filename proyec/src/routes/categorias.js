@@ -1,7 +1,7 @@
-import { Router } from 'express';
+import express from 'express';
 import { getAllCategorias } from '../controllers/catcontroller.js';
 
-const router = Router();
+const router = express.Router();
 
 router.get('/', getAllCategorias);
 

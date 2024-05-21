@@ -1,4 +1,3 @@
-//import { createConnection } from '../DB/database.js';
 import sql from 'mssql';
 import config from '../config.js';
 

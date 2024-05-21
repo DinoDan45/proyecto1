@@ -1,15 +1,19 @@
 import express from 'express';
 import morgan from 'morgan';
 import usuarioRoutes from './routes/authroutes.js';
-import categoriaRoutes from './routes/categorias.js';
-import productoRoutes from './routes/productos.js';
+import productoRoutes from './routes/producto.js';
 import carritoRoutes from './routes/carrito.js';
+import categoriasRoutes from './routes/categorias.js';
 import { createConnection } from './DB/database.js';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
 
 // Configurar el puerto
-app.set('port', process.env.PORT || 3000);
+const port = process.env.PORT || 5040;
+app.set('port', port);
 
 // Middleware
 app.use(morgan('dev'));
@@ -22,8 +26,11 @@ createConnection()
 
 // Rutas
 app.use('/api', usuarioRoutes);
-app.use('/api/categorias', categoriaRoutes);
-app.use('/api/productos', productoRoutes);
-app.use('/api/carrito', carritoRoutes);
+app.use('/api', productoRoutes);
+app.use('/api', carritoRoutes);
+app.use('/api', categoriasRoutes);
 
-export default app;
+// Iniciar el servidor
+app.listen(port, () => {
+console.log(`Server is running on port ${port}`);
+});

@@ -28,6 +28,9 @@ function Registro() {
 
     return (
         <div className="registro-container">
+            <div className="presentacion-mensaje">
+                ¡Que gusto que llegaras hasta aquí! Estamos seguros de que te encantará la facilidad de navegación y la atención al cliente que ofrecemos. ¡Empieza hoy mismo y registrate para que disfrutes de una experiencia de compra como ninguna otra!
+            </div>
             <form onSubmit={handleSubmit} className="registro-form">
                 <div className="registro-row">
                     <label className="registro-label">Nombre:</label>

@@ -2,8 +2,8 @@ import sql from 'mssql';
 import config from '../config.js';
 
 export const addToCart = async (req, res) => {
-    const { id_usuario, id_producto, cantidad } = req.body;
-    try {
+const { id_usuario, id_producto, cantidad } = req.body;
+try {
     const pool = await sql.connect(config);
     await pool.request()
     .input('id_usuario', sql.UniqueIdentifier, id_usuario)

@@ -1,49 +1,46 @@
-import { createConnection } from '../DB/database.js';
+import sql from 'mssql';
+import config from '../config.js';
 
-const getUsuarios = async (req, res) => {
+export const registerUser = async (req, res) => {
+  const { nombre, apellido, email, contrasena, telefono, direccion, ciudad, estado, pais } = req.body;
   try {
-    const connection = await createConnection();
-    const result = await connection.query('SELECT * FROM dbo.Usuarios');
-    res.json(result.recordset);
-  } catch (err) {
-    console.error('Error querying the database: ', err);
-    res.status(500).send('Server error');
+    const pool = await sql.connect(config);
+    const hashedPassword = await bcrypt.hash(contrasena, 10);
+    await pool.request()
+      .input('nombre', sql.VarChar, nombre)
+      .input('apellido', sql.VarChar, apellido)
+      .input('email', sql.VarChar, email)
+      .input('contrasena', sql.VarChar, hashedPassword)
+      .input('telefono', sql.VarChar, telefono)
+      .input('direccion', sql.VarChar, direccion)
+      .input('ciudad', sql.VarChar, ciudad)
+      .input('estado', sql.VarChar, estado)
+      .input('pais', sql.VarChar, pais)
+      .query('INSERT INTO dbo.Usuarios (nombre, apellido, email, contrasena, telefono, direccion, ciudad, estado, pais) VALUES (@nombre, @apellido, @correo, @contrasena, @telefono, @direccion, @ciudad, @estado, @pais)');
+    res.status(201).send('Usuario registrado exitosamente');
+  } catch (error) {
+    console.error('Error al registrar usuario:', error);
+    res.status(500).send('Error del servidor');
   }
 };
 
-const authenticateUser = async (req, res) => {
-  const { username, password } = req.body;
+export const authenticateUser = async (req, res) => {
+  const { id_usuario, contrasena } = req.body;
   try {
-      const connection = await createConnection();
-      const result = await connection.query`SELECT * FROM dbo.Usuarios WHERE id_usuario = ${username} AND contraseña = ${password}`;
-      if (result.recordset.length > 0) {
-          res.json({ success: true });
-      } else {
-          res.json({ success: false });
-      }
-  } catch (err) {
-      console.error('Error querying the database: ', err);
-      res.status(500).send('Server error');
-  }
-};
+    const pool = await sql.connect(config);
+    const result = await pool.request()
+      .input('id_usuario', sql.UniqueIdentifier, id_usuario)
+      .input('contrasena', sql.VarChar, contrasena) 
+      .query('SELECT * FROM dbo.Usuarios WHERE id_usuario = @id_usuario AND contrasena = @contrasena');
+    const user = result.recordset[0];
 
-const registerUser = async (req, res) => {
-  const { nombre, apellido, email, telefono, direccion, ciudad, estado, pais, rol } = req.body;
-  try {
-    const connection = await createConnection();
-    await connection.query`
-      INSERT INTO dbo.Usuarios (nombre, apellido, email, telefono, direccion, ciudad, estado, pais, rol)
-      VALUES (${nombre}, ${apellido}, ${email}, ${telefono}, ${direccion}, ${ciudad}, ${estado}, ${pais}, ${rol})
-    `;
-    res.json({ success: true });
-  } catch (err) {
-    console.error('Error inserting into the database: ', err);
-    res.status(500).send('Server error');
+    if (user) {
+      res.json({ success: true, message: 'Autenticación exitosa' });
+    } else {
+      res.status(401).json({ success: false, message: 'Credenciales incorrectas' });
+    }
+  } catch (error) {
+    console.error('Error al autenticar usuario:', error);
+    res.status(500).send('Error del servidor');
   }
-};
-
-export const controladores = {
-  getUsuarios,
-  authenticateUser,
-  registerUser,
 };

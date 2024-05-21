@@ -1,8 +1,10 @@
-import { Router } from 'express';
-import { getProductsByCategory } from '../controllers/prodcontroller.js';
+import express from 'express';
+import { getCategories, getProductsByCategory, addToCart } from '../controllers/prodcontroller.js';
 
-const router = Router();
+const router = express.Router();
 
-router.get('/:categoryId', getProductsByCategory);
+router.get('/categorias', getCategories);
+router.get('/productos/:categoryId', getProductsByCategory);
+router.post('/carrito', addToCart);
 
 export default router;

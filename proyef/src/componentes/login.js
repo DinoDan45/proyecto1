@@ -30,6 +30,9 @@ function Login({ onLoginSuccess }) {
 
     return (
         <div className="login-container">
+            <div className="presentacion-mensaje">
+                ¡Bienvenido a nuestra tienda! Nos complace ofrecerte una experiencia de compra inigualable, donde cada visita es un placer y cada compra, una satisfacción. Descubre una variedad de productos cuidadosamente seleccionados para brindarte lo mejor en calidad. 
+            </div>
             <form onSubmit={handleSubmit}>
                 <label>
                     Usuario:
