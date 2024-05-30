@@ -11,7 +11,7 @@ const createConnection = async () => {
       port: parseInt(config.dbPort, 10),
       database: config.dbName,
       options: {
-        trustServerCertificate: true, // conexiones locales
+        trustServerCertificate: true,
       },
     });
 

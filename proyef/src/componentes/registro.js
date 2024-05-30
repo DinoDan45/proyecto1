@@ -13,7 +13,7 @@ function Registro() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch('http://localhost:3000/api/auth/register', {
+        const response = await fetch('http://localhost:1434/api/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ nombre, apellido, email, telefono, direccion, ciudad, estado, pais})

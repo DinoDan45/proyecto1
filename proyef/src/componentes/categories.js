@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+//import { useHistory } from 'react-router-dom';
 import '../stilos/categories.css';
 
 function Categories({ onCategorySelect }) {
     const [categories, setCategories] = useState([]);
-    const history = useHistory();
+    //const history = useHistory();
 
     useEffect(() => {
         fetch('http://localhost:3000/api/categorias')
@@ -12,9 +12,9 @@ function Categories({ onCategorySelect }) {
             .then(data => setCategories(data));
     }, []);
 
-    const handleLogout = () => {
-        history.push('/login');
-    };
+    //const handleLogout = () => {
+    //    history.push('/login');
+    //};
 
     return (
         <div className="categories-container">
